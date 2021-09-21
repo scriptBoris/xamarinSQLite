@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinSQLite.Views.HomeView"
+    x:DataType="vm:HomeVm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:XamarinSQLite.ViewModels"
+    Title="Home page">
+    <StackLayout>
+        <Button Command="{Binding CommandDbContent}" Text="Open data base content" />
+    </StackLayout>
+</ContentPage>

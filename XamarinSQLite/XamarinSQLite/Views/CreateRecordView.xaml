@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinSQLite.Views.CreateRecordView"
+    x:DataType="vm:CreateRecordVm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:vm="clr-namespace:XamarinSQLite.ViewModels"
+    Title="New record">
+    <Grid>
+        <ScrollView>
+            <StackLayout Padding="20">
+                <Entry Placeholder="First Name" Text="{Binding User.FirstName}" />
+                <Entry Placeholder="Last Name" Text="{Binding User.LastName}" />
+
+                <Image Source="{Binding PreviewAvatar}" />
+                <Button Command="{Binding CommandSelectImage}" Text="Select Avatar" />
+
+                <Button Command="{Binding CommandCreate}" Text="Create record" />
+            </StackLayout>
+        </ScrollView>
+
+        <!--Loading-->
+        <ContentView BackgroundColor="#8000" IsVisible="{Binding IsLoading}">
+            <ActivityIndicator
+                HeightRequest="64"
+                WidthRequest="64"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsRunning="True" />
+        </ContentView>
+    </Grid>
+</ContentPage>

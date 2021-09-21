@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XamarinSQLite.Views.DbContentView"
+    x:DataType="vm:DbContentVm"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:elements="clr-namespace:XamarinSQLite.Elements"
+    xmlns:models="clr-namespace:XamarinSQLite.Models"
+    xmlns:vm="clr-namespace:XamarinSQLite.ViewModels"
+    Title="DB Content">
+    <Grid>
+        <CollectionView ItemsSource="{Binding Users}">
+
+            <CollectionView.Header>
+                <BoxView HeightRequest="20" VerticalOptions="Start" />
+            </CollectionView.Header>
+
+            <CollectionView.Footer>
+                <BoxView HeightRequest="20" VerticalOptions="Start" />
+            </CollectionView.Footer>
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout ItemSpacing="10" Orientation="Vertical" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:User">
+                    <ContentView>
+                        <Frame Margin="20,5">
+                            <Grid ColumnDefinitions="64, *, 30" ColumnSpacing="10">
+
+                                <elements:ImageBase64
+                                    Grid.Column="0"
+                                    HeightRequest="64"
+                                    WidthRequest="64"
+                                    VerticalOptions="Start"
+                                    HorizontalOptions="Start"
+                                    Aspect="AspectFill"
+                                    Base64Source="{Binding AvatarBase64}" />
+
+                                <Label Grid.Column="1">
+                                    <Label.FormattedText>
+                                        <FormattedString>
+                                            <Span Text="{Binding FirstName}" />
+                                            <Span Text=" " />
+                                            <Span Text="{Binding LastName}" />
+                                        </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+
+                                <Label
+                                    Grid.Column="2"
+                                    FontSize="22"
+                                    Text="{Binding Number}" />
+                            </Grid>
+                        </Frame>
+                    </ContentView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+                <Label
+                    HorizontalTextAlignment="Center"
+                    Text="Data base is empty..."
+                    TranslationY="-20"
+                    VerticalTextAlignment="Center" />
+            </CollectionView.EmptyView>
+        </CollectionView>
+
+        <!--Flow button-->
+        <Button
+            HeightRequest="64"
+            WidthRequest="64"
+            VerticalOptions="End"
+            HorizontalOptions="End"
+            BackgroundColor="#81c784"
+            Command="{Binding CommandCreateRecord}"
+            CornerRadius="32"
+            FontSize="30"
+            Text="+"
+            TextColor="#FFF"
+            TranslationX="-25"
+            TranslationY="-25" />
+
+        <!--Loading-->
+        <ContentView BackgroundColor="#8000" IsVisible="{Binding IsLoading}">
+            <ActivityIndicator
+                HeightRequest="64"
+                WidthRequest="64"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsRunning="True" />
+        </ContentView>
+    </Grid>
+</ContentPage>
